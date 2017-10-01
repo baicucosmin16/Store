@@ -13,18 +13,6 @@ public class ShoppingCart extends ItemList implements Visitor{
         order = new ArrayList<>();
     }
 
-   /* public void afisare(){     //METODA PROVIZORIE PENTRU TESTARE
-
-
-        it.current = firstElem;
-        while (it.current != null){
-            Item a = (Item)it.current.value;
-            System.out.println(a.getNume() + " " + a.getPret());
-            it.current = (Node)it.next();
-        }
-    }*/
-
-
     public boolean add(Item elementOrig){
         Item element = elementOrig.clona(elementOrig);
         Node newNode = new Node(element);
@@ -134,10 +122,8 @@ public class ShoppingCart extends ItemList implements Visitor{
             while(it.current != null){
                 aux = (Item)it.current.value;
                 if (aux.getDepartment().getID() == softwareDepartment.getID()){
-                    //aux.setPret(Math.round((aux.getPret() - 0.2 * aux.getPret())*100.0)/100.0);
                     aux.setPret(aux.getPret() - 0.2 * aux.getPret());
                     Item newitem = aux.clona(aux);
-                    //it.current = (Node)it.next();
                     next = (Node)it.next();
                     remove(aux);
                     add(newitem);
@@ -171,10 +157,8 @@ public class ShoppingCart extends ItemList implements Visitor{
             while(it.current != null){
                 aux = (Item)it.current.value;
                 if(aux.getDepartment().getID() == videoDepartment.getID()) {
-                    //aux.setPret(Math.round((aux.getPret() - 0.15 * aux.getPret())*100.0)/100.0);
                     aux.setPret(aux.getPret() - 0.15 * aux.getPret());
                     Item newitem = aux.clona(aux);
-                    //it.current = (Node) it.next();
                     next = (Node)it.next();
                     remove(aux);
                     add(newitem);
@@ -186,12 +170,6 @@ public class ShoppingCart extends ItemList implements Visitor{
             }
         }
         it.current = firstElem;
-        /*while(it.current != null){
-            aux = (Item)it.current.value;
-            if(aux.getDepartment().getID() == videoDepartment.getID())
-                aux.setPret(aux.getPret() - 0.05 * aux.getPret());
-            it.current = (Node)it.next();
-        }*/
         buget -= getTotalPrice();
         buget += 0.5 * sum;
 
